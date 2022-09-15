@@ -1,0 +1,73 @@
+{
+	"AXE common imports": {
+		"prefix": ["import" , "axe import"],
+		"body": ["import { axe } from 'jest-axe';",
+			"import 'jest-axe/extend-expect';",
+			"import { render } from '@testing-library/react';",
+			"import { useSelector } from 'react-redux';",
+			"import ${1:myComponent} from './${1:myComponent}';",
+			"",
+			"jest.mock('react-redux');\t$0"   
+		],
+		"description": "Common imports for axe tests. Enter your component to import then Tab to end. "
+	},
+	"AXE Describe block (empty)": {
+		"prefix": ["axe describe empty" , "describe empty"],
+		"body": ["describe('AXE: ${1:myComponent}', () => {",
+			"});\t$0"],
+		"description": "An empty, Axe describe block. Add your component under test, then tab to end."
+	},
+	"AXE Describe block (with simple test)": {
+		"prefix": ["axe describe simple" , "describe simple"],
+		"body": ["describe('AXE: ${1:myComponent}', () => {",
+					"\ttest('Should not have any violations when ${1:myComponent} is ${2:inSomeState}', async () => {",
+					"\t\tconst { container } = render(<${1:myComponent} />);",
+					"\t\tconst result = await axe(container);",
+					"\t\t",
+					"\t\texpect(result).toHaveNoViolations();",
+					"\t});\t$0",
+				"});"],
+		"description": "An Axe describe block with a simple test. Add your component under test and the state being tested, then tab to end."
+	},
+	"AXE Describe block (with modal test)": {
+		"prefix": ["axe describe modal" , "modal describe simple"],
+		"body": ["describe('AXE: ${1:myComponent}', () => {",
+					"\ttest('Should not have any violations when ${1:myComponent} is ${2:inSomeState}', async () => {",
+					"\t\trender(<${1:myComponent} />, document.body);",
+					"\t\tconst result = await axe(document.body);",
+					"\t\t",
+					"\t\texpect(result).toHaveNoViolations();",
+					"\t});\t$0",
+				"});"],
+		"description": "An Axe describe block with the 'react' testing syntax (document.body instead of container) but it works for modals."
+	},
+	"AXE Simple test block": {
+		"prefix": ["test" , "axe test simple" , "simple test"],
+		"body": ["test('Should not have any violations when ${1:myComponent} is ${2:inSomeState}', async () => {",
+					"\tconst { container } = render(<${1:myComponent} />);",
+					"\tconst result = await axe(container);",
+					"\t",
+					"\texpect(result).toHaveNoViolations();",
+				"});\t$0"],
+		"description": "A simple AXE test block. Add the component and the state being tested, then tab to end."
+	  },
+	"Default state (framework)": {
+		"prefix": ["defaultState" , "axe defaultState"],
+		"body": ["const defaultState = {",
+					"\tAEMContent: {",
+					"\t\tdata: {",
+					"\t\t\t${1:Paste_AEM_Content_here}",
+					"\t\t},",
+					"\t},",
+					"\tAuthentication: {},",
+			"};\t$0"],
+		"description": "A mostly empty default state object."
+	},
+	"Use defaultState": {
+		"prefix": ["use defaultState" , "axe use defaultState"],
+		"body": ["const state = {",
+					"\t...defaultState,",
+			"};\t$0"],
+		"description": "A use default state object."
+	}
+}
